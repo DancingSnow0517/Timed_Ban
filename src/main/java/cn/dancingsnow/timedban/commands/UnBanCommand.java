@@ -29,7 +29,7 @@ public class UnBanCommand {
 
     public static void init(Timedban timedban) {
         timedban.eventManager.register(timedban, timedban.injector.getInstance(UnBanCommand.class));
-        timedban.commandManager.register(timedban.injector.getInstance(BanCommand.class).createBrigadierCommand());
+        timedban.commandManager.register(timedban.injector.getInstance(UnBanCommand.class).createBrigadierCommand());
     }
 
     public BrigadierCommand createBrigadierCommand() {
