@@ -54,10 +54,14 @@ public class BanPlayer {
         return ret;
     }
 
+    public String getUnBanTimeStr() {
+        Calendar unBanTime = (Calendar) calendar.clone();
+        unBanTime.add(Calendar.SECOND, sec);
+        return getTimeStr(unBanTime);
+    }
+
     public Component getBanMsg() {
-        Calendar deBanTime = (Calendar) calendar.clone();
-        deBanTime.add(Calendar.SECOND, sec);
         return Component.text("你已经被封禁").color(NamedTextColor.RED)
-                .append(Component.text("\n").append(Component.text("解禁时间：" + getTimeStr(deBanTime)).color(NamedTextColor.AQUA)));
+                .append(Component.text("\n").append(Component.text("解禁时间：" + getUnBanTimeStr()).color(NamedTextColor.AQUA)));
     }
 }
