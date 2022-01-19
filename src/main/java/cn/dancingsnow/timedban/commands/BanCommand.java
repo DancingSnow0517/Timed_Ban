@@ -37,7 +37,7 @@ public class BanCommand {
 
     public BrigadierCommand createBrigadierCommand() {
         LiteralCommandNode<CommandSource> node = LiteralArgumentBuilder
-                .<CommandSource>literal("tb").requires(commandSource -> commandSource.hasPermission("timedban.admin"))
+                .<CommandSource>literal("tban").requires(commandSource -> commandSource.hasPermission("timedban.admin"))
                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("username", StringArgumentType.string())
                         .suggests(this::getUsernameSuggestions)
                         .then(RequiredArgumentBuilder.<CommandSource, Integer>argument("day", IntegerArgumentType.integer())
