@@ -83,7 +83,9 @@ public class Timedban {
 
         File dataFolder = dataFolderPath.toFile();
         if (!dataFolder.exists() && !dataFolder.isDirectory()) {
-            dataFolder.mkdir();
+            if (dataFolder.mkdir()) {
+                logger.info("Directory create success");
+            }
         }
         config = new Config(dataFolderPath);
         if (!config.load()) {
@@ -99,6 +101,6 @@ public class Timedban {
         }
         banList.save();
 
-        new BanCommand();
+        BanCommand.init(this);
     }
 }

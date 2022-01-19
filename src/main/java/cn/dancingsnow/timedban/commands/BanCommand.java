@@ -30,7 +30,7 @@ public class BanCommand {
     @Inject
     private ProxyServer server;
 
-    public BanCommand() {
+    public static void init(Timedban timedban) {
         timedban.server.getEventManager().register(timedban, timedban.injector.getInstance(BanCommand.class));
         timedban.commandManager.register(timedban.injector.getInstance(BanCommand.class).createBrigadierCommand());
     }
