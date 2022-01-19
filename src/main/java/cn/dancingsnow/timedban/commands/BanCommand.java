@@ -65,7 +65,6 @@ public class BanCommand {
 
     public CompletableFuture<Suggestions> getUsernameSuggestions(final CommandContext<CommandSource> context, final SuggestionsBuilder builder) {
         ConcurrentSkipListSet<String> playerSet = new ConcurrentSkipListSet<>();
-        playerSet.clear();
         server.getAllPlayers().forEach(player -> playerSet.add(player.getUsername()));
         playerSet.forEach(
                 username -> {
