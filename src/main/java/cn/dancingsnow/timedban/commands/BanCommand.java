@@ -15,9 +15,13 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.Player;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
+import com.velocitypowered.api.event.player.KickedFromServerEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -41,28 +45,32 @@ public class BanCommand {
                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("username", StringArgumentType.string())
                         .suggests(this::getUsernameSuggestions)
                         .then(RequiredArgumentBuilder.<CommandSource, Integer>argument("day", IntegerArgumentType.integer())
-                                .executes(context -> {
-                                    String name = context.getArgument("username", String.class);
-                                    Integer day = context.getArgument("day", Integer.class);
-                                    BanPlayer banPlayer = new BanPlayer(day, "I don't know");
-                                    timedban.banList.addBanPlayer(name, banPlayer);
-                                    timedban.logger.info("Banned {}.", name);
-                                    context.getSource().sendMessage(Component.text("封禁成功").color(NamedTextColor.GREEN));
-                                    return 1;
-                                })
+                                .executes(this::banPlayer)
                                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("reason", StringArgumentType.string())
-                                        .executes(context -> {
-                                            String name = context.getArgument("username", String.class);
-                                            String reason = context.getArgument("reason", String.class);
-                                            Integer day = context.getArgument("day", Integer.class);
-                                            BanPlayer banPlayer = new BanPlayer(day, reason);
-                                            timedban.banList.addBanPlayer(name, banPlayer);
-                                            timedban.logger.info("Banned {}.", name);
-                                            context.getSource().sendMessage(Component.text("封禁成功").color(NamedTextColor.GREEN));
-                                            return 1;
-                                        }))))
+                                        .executes(this::banPlayer))))
                 .build();
         return new BrigadierCommand(node);
+    }
+
+    private Integer banPlayer(CommandContext<CommandSource> context) {
+        BanPlayer banPlayer;
+        Optional<Player> player;
+        String name = context.getArgument("username", String.class);
+        Integer day = context.getArgument("day", Integer.class);
+        try {
+            String reason = context.getArgument("reason", String.class);
+            banPlayer = new BanPlayer(day, reason);
+        } catch (IllegalArgumentException e) {
+            banPlayer = new BanPlayer(day, "I don't know");
+        }
+        timedban.banList.addBanPlayer(name, banPlayer);
+        player = server.getPlayer(name);
+        if (player.isPresent()) {
+            player.get().disconnect(banPlayer.getBanMsg());
+        }
+        timedban.logger.info("Banned {}.", name);
+        context.getSource().sendMessage(Component.text("封禁成功").color(NamedTextColor.GREEN));
+        return 1;
     }
 
     public CompletableFuture<Suggestions> getUsernameSuggestions(final CommandContext<CommandSource> context, final SuggestionsBuilder builder) {
