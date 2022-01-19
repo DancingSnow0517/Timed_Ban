@@ -1,6 +1,7 @@
 package cn.dancingsnow.timedban.commands;
 
 import cn.dancingsnow.timedban.Timedban;
+import cn.dancingsnow.timedban.utils.BanPlayer;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -37,7 +38,23 @@ public class BanCommand {
                 .<CommandSource>literal("tb").requires(commandSource -> commandSource.hasPermission("timedban.admin"))
                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("username", StringArgumentType.string())
                         .suggests(this::getUsernameSuggestions)
-                        .then(RequiredArgumentBuilder.argument("day", IntegerArgumentType.integer())))
+                        .then(RequiredArgumentBuilder.<CommandSource, Integer>argument("day", IntegerArgumentType.integer())
+                                .executes(context -> {
+                                    String name = context.getArgument("username", String.class);
+                                    Integer day = context.getArgument("day", Integer.class);
+                                    BanPlayer banPlayer = new BanPlayer(day, "I don't know");
+                                    timedban.banList.addBanPlayer(name, banPlayer);
+                                    return 1;
+                                })
+                                .then(RequiredArgumentBuilder.<CommandSource, String>argument("reason", StringArgumentType.string())
+                                        .executes(context -> {
+                                            String name = context.getArgument("username", String.class);
+                                            String reason = context.getArgument("reason", String.class);
+                                            Integer day = context.getArgument("day", Integer.class);
+                                            BanPlayer banPlayer = new BanPlayer(day, reason);
+                                            timedban.banList.addBanPlayer(name, banPlayer);
+                                            return 1;
+                                        }))))
                 .build();
         return new BrigadierCommand(node);
     }

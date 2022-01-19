@@ -37,4 +37,9 @@ public class BanList extends AbstractConfig<BanList.ConfigData>{
         return config.banList.containsKey(name);
     }
 
+    public void addBanPlayer(String name, BanPlayer banPlayer) {
+        config.banList.put(name, banPlayer);
+        save();
+    }
+
 }
