@@ -15,6 +15,8 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -44,6 +46,7 @@ public class BanCommand {
                                     Integer day = context.getArgument("day", Integer.class);
                                     BanPlayer banPlayer = new BanPlayer(day, "I don't know");
                                     timedban.banList.addBanPlayer(name, banPlayer);
+                                    context.getSource().sendMessage(Component.text("封禁成功").color(NamedTextColor.GREEN));
                                     return 1;
                                 })
                                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("reason", StringArgumentType.string())
@@ -53,6 +56,7 @@ public class BanCommand {
                                             Integer day = context.getArgument("day", Integer.class);
                                             BanPlayer banPlayer = new BanPlayer(day, reason);
                                             timedban.banList.addBanPlayer(name, banPlayer);
+                                            context.getSource().sendMessage(Component.text("封禁成功").color(NamedTextColor.GREEN));
                                             return 1;
                                         }))))
                 .build();
