@@ -10,21 +10,21 @@ import com.velocitypowered.api.command.CommandSource;
 import net.kyori.adventure.text.Component;
 
 @Singleton
-public class OnCommand {
+public class OffCommand {
     @Inject
     private Timedban timedban;
 
     public static void init(Timedban timedban) {
-        timedban.eventManager.register(timedban, timedban.injector.getInstance(OnCommand.class));
-        timedban.commandManager.register(timedban.injector.getInstance(OnCommand.class).createBrigadierCommand());
+        timedban.eventManager.register(timedban, timedban.injector.getInstance(OffCommand.class));
+        timedban.commandManager.register(timedban.injector.getInstance(OffCommand.class).createBrigadierCommand());
     }
 
     public BrigadierCommand createBrigadierCommand() {
         LiteralCommandNode<CommandSource> node = LiteralArgumentBuilder
-                .<CommandSource>literal("ton").requires(source -> source.hasPermission("timedban.switch"))
+                .<CommandSource>literal("toff").requires(source -> source.hasPermission("timedban.switch"))
                 .executes(context -> {
-                    timedban.config.setStatus(true);
-                    context.getSource().sendMessage(Component.text("已启用 Timed Ban"));
+                    timedban.config.setStatus(false);
+                    context.getSource().sendMessage(Component.text("已禁用 Timed Ban"));
                     return 1;
                 })
                 .build();
