@@ -3,6 +3,7 @@ package cn.dancingsnow.timedban.commands;
 import cn.dancingsnow.timedban.Timedban;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
@@ -35,7 +36,8 @@ public class BanCommand {
         LiteralCommandNode<CommandSource> node = LiteralArgumentBuilder
                 .<CommandSource>literal("tb").requires(commandSource -> commandSource.hasPermission("timedban.admin"))
                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("username", StringArgumentType.string())
-                        .suggests(this::getUsernameSuggestions))
+                        .suggests(this::getUsernameSuggestions)
+                        .then(RequiredArgumentBuilder.argument("day", IntegerArgumentType.integer())))
                 .build();
         return new BrigadierCommand(node);
     }
