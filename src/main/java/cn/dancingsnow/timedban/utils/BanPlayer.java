@@ -51,7 +51,7 @@ public class BanPlayer {
         }else {
             second = String.valueOf(calendar.get(Calendar.SECOND));
         }
-        ret += calendar.get(Calendar.YEAR) + "\u5e74" + (calendar.get(Calendar.MONTH) + 1) + "\u6708" + calendar.get(Calendar.DAY_OF_MONTH) + "\u65e5 " + hour + ":" + minute + ":" + second;
+        ret += calendar.get(Calendar.YEAR) + "年" + (calendar.get(Calendar.MONTH) + 1) + "月" + calendar.get(Calendar.DAY_OF_MONTH) + "日 " + hour + ":" + minute + ":" + second;
         return ret;
     }
 
