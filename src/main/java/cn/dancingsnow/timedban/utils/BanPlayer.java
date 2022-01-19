@@ -58,7 +58,7 @@ public class BanPlayer {
     public Component getBanMsg() {
         Calendar deBanTime = (Calendar) calendar.clone();
         deBanTime.add(Calendar.SECOND, sec);
-        return Component.text("\u4f60\u5df2\u7ecf\u88ab\u5c01\u7981").color(NamedTextColor.RED)
-                .append(Component.text("\n").append(Component.text("\u89e3\u7981\u65f6\u95f4: " + getTimeStr(deBanTime)).color(NamedTextColor.AQUA)));
+        return Component.text("你已经被封禁").color(NamedTextColor.RED)
+                .append(Component.text("\n").append(Component.text("解禁时间：" + getTimeStr(deBanTime)).color(NamedTextColor.AQUA)));
     }
 }
