@@ -1,7 +1,6 @@
 package cn.dancingsnow.timedban.data;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class Config extends AbstractConfig<Config.ConfigData>{
 

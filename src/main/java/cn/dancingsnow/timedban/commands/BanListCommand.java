@@ -31,9 +31,7 @@ public class BanListCommand {
     private int replyMessage(CommandSource src) {
         src.sendMessage(Component.text("以下玩家已被封禁："));
         timedban.banList.getConfig().forEach(
-                (name, banPlayer) -> {
-                    src.sendMessage(Component.text(name+" "+"解封时间："+banPlayer.getUnBanTimeStr()+" 原因："+banPlayer.getReason()));
-                }
+                (name, banPlayer) -> src.sendMessage(Component.text(name+" "+"解封时间："+banPlayer.getUnBanTimeStr()+" 原因："+banPlayer.getReason()))
         );
         return 1;
     }

@@ -25,7 +25,7 @@ public class BanList extends AbstractConfig<BanList.ConfigData>{
 
     public static class ConfigData {
 
-        private HashMap<String, BanPlayer> banList = new HashMap<>();
+        private final HashMap<String, BanPlayer> banList = new HashMap<>();
 
     }
 
