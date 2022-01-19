@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 @Singleton
 public class UnBanCommand {
     @Inject
-    Timedban timedban;
+    private Timedban timedban;
 
     public static void init(Timedban timedban) {
         timedban.eventManager.register(timedban, timedban.injector.getInstance(UnBanCommand.class));
