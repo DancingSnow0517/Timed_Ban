@@ -24,6 +24,7 @@ public class OffCommand {
                 .<CommandSource>literal("toff").requires(source -> source.hasPermission("timedban.switch"))
                 .executes(context -> {
                     timedban.config.setStatus(false);
+                    timedban.logger.info("Timed Ban turned off.");
                     context.getSource().sendMessage(Component.text("已禁用 Timed Ban"));
                     return 1;
                 })

@@ -24,6 +24,7 @@ public class OnCommand {
                 .<CommandSource>literal("ton").requires(source -> source.hasPermission("timedban.switch"))
                 .executes(context -> {
                     timedban.config.setStatus(true);
+                    timedban.logger.info("Timed Ban turned on.");
                     context.getSource().sendMessage(Component.text("已启用 Timed Ban"));
                     return 1;
                 })

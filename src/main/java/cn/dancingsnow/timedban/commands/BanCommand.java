@@ -46,6 +46,7 @@ public class BanCommand {
                                     Integer day = context.getArgument("day", Integer.class);
                                     BanPlayer banPlayer = new BanPlayer(day, "I don't know");
                                     timedban.banList.addBanPlayer(name, banPlayer);
+                                    timedban.logger.info("Banned {}.", name);
                                     context.getSource().sendMessage(Component.text("封禁成功").color(NamedTextColor.GREEN));
                                     return 1;
                                 })
@@ -56,6 +57,7 @@ public class BanCommand {
                                             Integer day = context.getArgument("day", Integer.class);
                                             BanPlayer banPlayer = new BanPlayer(day, reason);
                                             timedban.banList.addBanPlayer(name, banPlayer);
+                                            timedban.logger.info("Banned {}.", name);
                                             context.getSource().sendMessage(Component.text("封禁成功").color(NamedTextColor.GREEN));
                                             return 1;
                                         }))))

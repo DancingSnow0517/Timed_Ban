@@ -37,6 +37,7 @@ public class UnBanCommand {
                             String name = context.getArgument("name", String.class);
                             if (timedban.banList.hasPlayer(name)) {
                                 timedban.banList.removeBanPlayer(name);
+                                timedban.logger.info("Unbanned {}", name);
                                 context.getSource().sendMessage(Component.text("解禁成功").color(NamedTextColor.GREEN));
                             } else {
                                 context.getSource().sendMessage(Component.text("该玩家未被封禁").color(NamedTextColor.RED));
