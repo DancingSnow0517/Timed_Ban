@@ -18,6 +18,11 @@ public class BanChecks {
             return;
         }
 
+        // 如果状态为false，就不需要检查了
+        if (!timedban.config.getStatus()) {
+            return;
+        }
+
         String name = event.getUsername();
         if (!timedban.banList.hasPlayer(name)) {
             return;
