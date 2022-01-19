@@ -2,7 +2,9 @@ package cn.dancingsnow.timedban;
 
 import cn.dancingsnow.timedban.commands.BanCommand;
 import cn.dancingsnow.timedban.commands.BanListCommand;
+import cn.dancingsnow.timedban.commands.OnCommand;
 import cn.dancingsnow.timedban.commands.UnBanCommand;
+import cn.dancingsnow.timedban.commands.OffCommand;
 import cn.dancingsnow.timedban.data.BanList;
 import cn.dancingsnow.timedban.data.Config;
 import com.google.gson.Gson;
@@ -105,5 +107,7 @@ public class Timedban {
         BanCommand.init(this);
         UnBanCommand.init(this);
         BanListCommand.init(this);
+        OnCommand.init(this);
+        OffCommand.init(this);
     }
 }
