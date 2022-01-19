@@ -28,8 +28,10 @@ import java.util.Objects;
 
 @Plugin(
         id = "timedban",
-        name = "Timedban",
-        version = BuildConstants.VERSION
+        name = "Timed Ban",
+        version = BuildConstants.VERSION,
+        url = "https://github.com/DancingSnow0517/Timed_Ban",
+        authors = {"DancingSnow", "Huaji_MUR233"}
 )
 public class Timedban {
 
