@@ -10,7 +10,7 @@ public class BanList extends AbstractConfig<BanList.ConfigData>{
     private BanList.ConfigData config = new ConfigData();
 
     public BanList(Path dataFolderPath) {
-        super(dataFolderPath.resolve("ban list.json"), ConfigData.class);
+        super(dataFolderPath.resolve("timedban_list.json"), ConfigData.class);
     }
 
     @Override
@@ -27,6 +27,10 @@ public class BanList extends AbstractConfig<BanList.ConfigData>{
 
         private HashMap<String, BanPlayer> banList = new HashMap<>();
 
+    }
+
+    public HashMap<String, BanPlayer> getConfig() {
+        return config.banList;
     }
 
     public BanPlayer getBanPlayer(String name) {
