@@ -9,7 +9,6 @@ import com.google.gson.GsonBuilder;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.velocitypowered.api.command.CommandManager;
-import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
@@ -23,7 +22,6 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 @Plugin(
         id = "timedban",
@@ -32,7 +30,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 )
 public class Timedban {
 
-    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
 
     @Inject

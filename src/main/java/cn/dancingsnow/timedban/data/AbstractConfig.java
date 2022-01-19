@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
 
 public abstract class AbstractConfig<T> {
     protected final Path path;
@@ -36,7 +37,7 @@ public abstract class AbstractConfig<T> {
         }
         BufferedWriter bfw;
         try {
-            bfw = Files.newBufferedWriter(path);
+            bfw = Files.newBufferedWriter(path, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
             Timedban.logger().error("Save {} error: newBufferedWriter fail.", path);
@@ -59,7 +60,7 @@ public abstract class AbstractConfig<T> {
             return save();
         }
         try {
-            BufferedReader bfr = Files.newBufferedReader(path);
+            BufferedReader bfr = Files.newBufferedReader(path, StandardCharsets.UTF_8);
             setData(Timedban.GSON.fromJson(bfr, dataType));
             bfr.close();
         } catch (IOException e) {
