@@ -93,7 +93,7 @@ public class Timedban {
         config.save();
 
         banList = new BanList(dataFolderPath);
-        if (!config.load()) {
+        if (!banList.load()) {
             logger.error("Timed Ban load fail");
             throw new IllegalStateException("Timed Ban init fail");
         }
