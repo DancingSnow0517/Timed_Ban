@@ -1,7 +1,7 @@
 package cn.dancingsnow.timedban;
 
 import cn.dancingsnow.timedban.commands.BanCommand;
-import cn.dancingsnow.timedban.commands.TestCommand;
+import cn.dancingsnow.timedban.commands.UnBanCommand;
 import cn.dancingsnow.timedban.data.BanList;
 import cn.dancingsnow.timedban.data.Config;
 import com.google.gson.Gson;
@@ -74,7 +74,6 @@ public class Timedban {
     public void onProxyInitialization(ProxyInitializeEvent event) {
         instance = this;
         load();
-        commandManager.register("test", new TestCommand());
         logger.info("Plugin Init");
 
     }
@@ -101,6 +100,8 @@ public class Timedban {
         }
         banList.save();
 
+        // 注册命令
         BanCommand.init(this);
+        UnBanCommand.init(this);
     }
 }
