@@ -24,11 +24,10 @@ public class BanChecks {
         }
 
         String name = event.getUsername();
-        if (!timedban.banList.hasPlayer(name)) {
-            return;
-        }
-        else if (timedban.banList.getBanPlayer(name).isBaned()){
-            event.setResult(PreLoginEvent.PreLoginComponentResult.denied(timedban.banList.getBanPlayer(name).getBanMsg()));
+        if (timedban.banList.hasPlayer(name)) {
+            if (timedban.banList.getBanPlayer(name).isBaned()){
+                event.setResult(PreLoginEvent.PreLoginComponentResult.denied(timedban.banList.getBanPlayer(name).getBanMsg()));
+            }
         }
     }
 
