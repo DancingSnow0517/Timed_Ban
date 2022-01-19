@@ -42,4 +42,9 @@ public class BanList extends AbstractConfig<BanList.ConfigData>{
         save();
     }
 
+    public void removeBanPlayer(String name) {
+        config.banList.remove(name);
+        save();
+    }
+
 }
