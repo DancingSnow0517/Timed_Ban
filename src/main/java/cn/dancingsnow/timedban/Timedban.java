@@ -99,6 +99,6 @@ public class Timedban {
         }
         banList.save();
 
-        BanCommand.init(this);
+        new BanCommand();
     }
 }

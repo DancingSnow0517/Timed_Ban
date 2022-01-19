@@ -25,12 +25,12 @@ import java.util.concurrent.ConcurrentSkipListSet;
 public class BanCommand {
 
     @Inject
-    Timedban timedban;
+    private Timedban timedban;
 
     @Inject
-    public ProxyServer server;
+    private ProxyServer server;
 
-    public static void init(Timedban timedban) {
+    public BanCommand() {
         timedban.server.getEventManager().register(timedban, timedban.injector.getInstance(BanCommand.class));
         timedban.commandManager.register(timedban.injector.getInstance(BanCommand.class).createBrigadierCommand());
     }
