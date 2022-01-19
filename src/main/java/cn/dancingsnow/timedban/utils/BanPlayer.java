@@ -6,7 +6,6 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import java.util.Calendar;
 
 public class BanPlayer {
-
     private final String reason;
     private final Calendar calendar;
     private final int sec;
