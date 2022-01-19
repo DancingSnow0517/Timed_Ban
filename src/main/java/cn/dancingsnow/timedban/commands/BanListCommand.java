@@ -22,7 +22,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 @Singleton
-public class BanCommand {
+public class BanListCommand {
 
     @Inject
     private Timedban timedban;
@@ -30,14 +30,14 @@ public class BanCommand {
     @Inject
     private ProxyServer server;
 
-    public BanCommand() {
+    public BanListCommand() {
         timedban.server.getEventManager().register(timedban, timedban.injector.getInstance(BanCommand.class));
         timedban.commandManager.register(timedban.injector.getInstance(BanCommand.class).createBrigadierCommand());
     }
 
     public BrigadierCommand createBrigadierCommand() {
         LiteralCommandNode<CommandSource> node = LiteralArgumentBuilder
-                .<CommandSource>literal("tban").requires(commandSource -> commandSource.hasPermission("timedban.ban"))
+                .<CommandSource>literal("tban").requires(commandSource -> commandSource.hasPermission("timedban.admin"))
                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("username", StringArgumentType.string())
                         .suggests(this::getUsernameSuggestions)
                         .then(RequiredArgumentBuilder.<CommandSource, Integer>argument("day", IntegerArgumentType.integer())
