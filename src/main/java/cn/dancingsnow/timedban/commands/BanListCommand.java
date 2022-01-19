@@ -7,7 +7,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
-import com.velocitypowered.api.proxy.ProxyServer;
 import net.kyori.adventure.text.Component;
 
 @Singleton
@@ -16,7 +15,7 @@ public class BanListCommand {
     @Inject
     private Timedban timedban;
 
-    public BanListCommand() {
+    public static void init(Timedban timedban) {
         timedban.server.getEventManager().register(timedban, timedban.injector.getInstance(BanListCommand.class));
         timedban.commandManager.register(timedban.injector.getInstance(BanListCommand.class).createBrigadierCommand());
     }

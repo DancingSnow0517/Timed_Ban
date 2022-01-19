@@ -12,7 +12,6 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
-import com.velocitypowered.api.proxy.ProxyServer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 
@@ -23,9 +22,6 @@ import java.util.concurrent.ConcurrentSkipListSet;
 public class UnBanCommand {
     @Inject
     Timedban timedban;
-
-    @Inject
-    public ProxyServer server;
 
     public static void init(Timedban timedban) {
         timedban.eventManager.register(timedban, timedban.injector.getInstance(UnBanCommand.class));

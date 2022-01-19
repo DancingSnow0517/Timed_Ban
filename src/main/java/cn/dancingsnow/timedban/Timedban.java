@@ -1,6 +1,7 @@
 package cn.dancingsnow.timedban;
 
 import cn.dancingsnow.timedban.commands.BanCommand;
+import cn.dancingsnow.timedban.commands.BanListCommand;
 import cn.dancingsnow.timedban.commands.UnBanCommand;
 import cn.dancingsnow.timedban.data.BanList;
 import cn.dancingsnow.timedban.data.Config;
@@ -103,5 +104,6 @@ public class Timedban {
         // 注册命令
         BanCommand.init(this);
         UnBanCommand.init(this);
+        BanListCommand.init(this);
     }
 }
