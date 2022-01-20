@@ -42,7 +42,7 @@ public class BanCommand {
                 .<CommandSource>literal("tban").requires(commandSource -> commandSource.hasPermission("timedban.ban"))
                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("username", StringArgumentType.string())
                         .suggests(this::getUsernameSuggestions)
-                        .then(RequiredArgumentBuilder.<CommandSource, Integer>argument("day", IntegerArgumentType.integer())
+                        .then(RequiredArgumentBuilder.<CommandSource, Integer>argument("day", IntegerArgumentType.integer(1))
                                 .executes(this::banPlayer)
                                 .then(RequiredArgumentBuilder.<CommandSource, String>argument("reason", StringArgumentType.string())
                                         .executes(this::banPlayer))))
