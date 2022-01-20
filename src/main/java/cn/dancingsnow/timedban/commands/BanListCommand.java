@@ -9,6 +9,7 @@ import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 
 @Singleton
@@ -35,6 +36,7 @@ public class BanListCommand {
         timedban.banList.getConfig().forEach(
                 (name, banPlayer) -> {
                     src.sendMessage(Component.text(name).color(NamedTextColor.GOLD).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, name))
+                            .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("拷贝到粘贴板")))
                             .append(Component.text(" 解封时间：" + banPlayer.getUnBanTimeStr()).color(NamedTextColor.AQUA))
                             .append(Component.text(" 原因：" + banPlayer.getReason()).color(NamedTextColor.GREEN))
                             .append(Component.text(" [×]").color(NamedTextColor.DARK_RED).clickEvent(ClickEvent.suggestCommand("/tunban " + name))));
