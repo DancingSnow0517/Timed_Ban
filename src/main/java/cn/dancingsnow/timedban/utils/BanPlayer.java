@@ -62,6 +62,7 @@ public class BanPlayer {
 
     public Component getBanMsg() {
         return Component.text("你已经被封禁").color(NamedTextColor.RED)
-                .append(Component.text("\n").append(Component.text("解禁时间：" + getUnBanTimeStr()).color(NamedTextColor.AQUA)));
+                .append(Component.text("\n").append(Component.text("解禁时间：" + getUnBanTimeStr()).color(NamedTextColor.AQUA)
+                        .append(Component.text("\n").append(Component.text("原因：" + reason).color(NamedTextColor.GOLD)))));
     }
 }
