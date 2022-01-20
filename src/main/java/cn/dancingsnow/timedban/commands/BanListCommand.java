@@ -35,11 +35,11 @@ public class BanListCommand {
         src.sendMessage(Component.text("以下玩家已被封禁："));
         timedban.banList.getConfig().forEach(
                 (name, banPlayer) -> {
-                    src.sendMessage(Component.text(name).color(NamedTextColor.GOLD).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, name))
-                            .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("拷贝到粘贴板")))
+                    src.sendMessage(Component.text(name).color(NamedTextColor.GOLD).clickEvent(ClickEvent.copyToClipboard(name)).hoverEvent(HoverEvent.showText(Component.text("单击粘贴到剪切板")))
                             .append(Component.text(" 解封时间：" + banPlayer.getUnBanTimeStr()).color(NamedTextColor.AQUA))
                             .append(Component.text(" 原因：" + banPlayer.getReason()).color(NamedTextColor.GREEN))
-                            .append(Component.text(" [×]").color(NamedTextColor.DARK_RED).clickEvent(ClickEvent.suggestCommand("/tunban " + name))));
+                            .append(Component.text(" [×]").color(NamedTextColor.DARK_RED).clickEvent(ClickEvent.suggestCommand("/tunban " + name))
+                                    .hoverEvent(HoverEvent.showText(Component.text("单击将解封命令填到聊天栏")))));
                 }
         );
         return 1;
