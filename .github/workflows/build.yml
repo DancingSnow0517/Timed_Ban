@@ -30,10 +30,3 @@ jobs:
 
       - name: build
         run: ./gradlew build
-
-      - name: upload build artifacts
-        if: ${{ runner.os == 'Linux' && matrix.java == '17' }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: Artifacts
-          path: build/libs/
