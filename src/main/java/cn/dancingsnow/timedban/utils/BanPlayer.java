@@ -18,7 +18,7 @@ public class BanPlayer {
 
     public Boolean isBaned() {
         Calendar now = Calendar.getInstance();
-        if ((calendar.get(Calendar.SECOND) + sec) <= now.get(Calendar.SECOND)) {
+        if ((calendar.get(Calendar.SECOND) + sec) > now.get(Calendar.SECOND)) {
             return Boolean.TRUE;
         }
         else return Boolean.FALSE;
