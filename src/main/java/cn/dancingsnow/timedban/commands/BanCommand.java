@@ -55,6 +55,10 @@ public class BanCommand {
         Optional<Player> player;
         String name = context.getArgument("username", String.class);
         Integer day = context.getArgument("day", Integer.class);
+        if (!timedban.config.getStatus()) {
+            context.getSource().sendMessage(Component.text("Timed Ban 未启用").color(NamedTextColor.RED));
+            return 1;
+        }
         try {
             String reason = context.getArgument("reason", String.class);
             banPlayer = new BanPlayer(day, reason);
