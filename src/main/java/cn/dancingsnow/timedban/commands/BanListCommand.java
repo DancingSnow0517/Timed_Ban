@@ -35,9 +35,9 @@ public class BanListCommand {
         timedban.banList.getConfig().forEach(
                 (name, banPlayer) -> {
                     src.sendMessage(Component.text(name).color(NamedTextColor.GOLD).clickEvent(ClickEvent.clickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, name))
-                            .append(Component.text("解封时间：" + banPlayer.getUnBanTimeStr()).color(NamedTextColor.AQUA))
-                            .append(Component.text("原因：" + banPlayer.getReason()).color(NamedTextColor.WHITE))
-                            .append(Component.text("[×]").color(NamedTextColor.GREEN).clickEvent(ClickEvent.suggestCommand("/tunban " + name))));
+                            .append(Component.text(" 解封时间：" + banPlayer.getUnBanTimeStr()).color(NamedTextColor.AQUA))
+                            .append(Component.text(" 原因：" + banPlayer.getReason()).color(NamedTextColor.WHITE))
+                            .append(Component.text(" [×]").color(NamedTextColor.DARK_RED).clickEvent(ClickEvent.suggestCommand("/tunban " + name))));
                 }
         );
         return 1;
