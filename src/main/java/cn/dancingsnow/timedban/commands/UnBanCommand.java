@@ -35,6 +35,10 @@ public class UnBanCommand {
                         .suggests(this::getUsernameSuggestions)
                         .executes(context -> {
                             String name = context.getArgument("name", String.class);
+                            if (!timedban.config.getStatus()) {
+                                context.getSource().sendMessage(Component.text("Timed Ban 未启用").color(NamedTextColor.RED));
+                                return 1;
+                            }
                             if (timedban.banList.hasPlayer(name)) {
                                 timedban.banList.removeBanPlayer(name);
                                 timedban.logger.info("Unbanned {}", name);
